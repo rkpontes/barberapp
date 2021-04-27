@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class ScheduleRepository {
   final ScheduleApiClient apiClient = Get.find<ScheduleApiClient>();
 
-  getAll() async{
+  Future<List<Schedule>> getAll() async{
     List<Schedule> list = <Schedule>[];
     var response = await apiClient.getAll();
     if(response != null){

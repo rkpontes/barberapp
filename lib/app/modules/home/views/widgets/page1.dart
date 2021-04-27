@@ -9,16 +9,16 @@ class Page1 extends StatelessWidget {
   final controller = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Obx(
-        () => ListView.builder(
-          itemCount: controller.listSchedules.length,
+    return controller.obx(
+      (list) => Expanded(
+        child: ListView.builder(
+          itemCount: list.length,
           itemBuilder: (context, index) {
-            Schedule schedule = controller.listSchedules[index];
+            Schedule schedule = list[index];
             /* return ListTile(
-              title: Text("${schedule.service.name}"),
-              subtitle: Text("${schedule.schedulingDate}"),
-            ); */
+                title: Text("${schedule.service.name}"),
+                subtitle: Text("${schedule.schedulingDate}"),
+              ); */
             return Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -112,6 +112,8 @@ class Page1 extends StatelessWidget {
           },
         ),
       ),
+      onError: (err) => Expanded(child: Center(child: Text('$err'))),
+      onEmpty: Expanded(child: Center(child: Text('Nenhum agendamento realizado.'))),
     );
   }
 }

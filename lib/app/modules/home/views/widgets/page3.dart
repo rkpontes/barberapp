@@ -85,7 +85,7 @@ class Page3 extends StatelessWidget {
                           IconButton(
                             icon: Image.asset('assets/card.png'),
                             onPressed: () {
-                              Get.toNamed(Routes.SCHEDULES);
+                              Get.toNamed(Routes.EMPLOYEE_SCHEDULES);
                             },
                           ),
                           Text(

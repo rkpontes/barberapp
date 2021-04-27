@@ -1,5 +1,4 @@
-
-abstract class Routes{
+abstract class Routes {
   static const INITIAL = '/';
   static const LOGIN = '/login';
   static const WELCOME = '/welcome';
@@ -11,4 +10,5 @@ abstract class Routes{
   static const SETTINGS = '/settings';
   static const COMPANY = '/company';
   static const SERVICE = '/service';
+  static const EMPLOYEE_SCHEDULES = '/employee-schedules';
 }

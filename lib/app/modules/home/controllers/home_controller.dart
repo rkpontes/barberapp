@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class HomeController extends GetxController {
+class HomeController extends GetxController with StateMixin{
   // Essential
   final box = GetStorage('barberapp');
   final scheduleRepo = Get.find<ScheduleRepository>();
@@ -54,7 +54,15 @@ class HomeController extends GetxController {
   }
 
   void loadData() async {
-    listSchedules.assignAll(await scheduleRepo.getAll());
+    //listSchedules.assignAll(await scheduleRepo.getAll());
+    await scheduleRepo.getAll().then((value){
+      listSchedules.assignAll(value);
+      if(value.length > 0) change(value, status: RxStatus.success());
+      else change(null, status: RxStatus.empty());
+    }, onError: (err){
+      change(null, status: RxStatus.error('Houve um erro na requisição.'));
+    });
+
     rebuildMarkers();
     print('loadData');
   }
